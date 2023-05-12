@@ -41,7 +41,7 @@ class Point:
 class Line:
     def __init__(self, canvas, start_x, start_y, end_x, end_y):
         self.canvas = canvas
-        self.id = canvas.create_line(start_x, start_y, end_x, end_y, width=1)
+        self.id = canvas.create_line(start_x, start_y, end_x, end_y)
 
     def delete(self):
         self.canvas.delete(self.id)
@@ -190,7 +190,7 @@ class ShapesFunctionality:
             self.canvas.bind('<Button-1>', self.create_circle)
             self.canvas.bind('<B1-Motion>', self.create_circle)
 
-    # Create
+    # Creating shapes
     def create_shape(self, event):
         if not self.scroll_click_enabled:
             return
@@ -217,7 +217,7 @@ class ShapesFunctionality:
 
         self.shapes_lst.append(point)
 
-    # Create Line
+    # create_line
     def start_line(self, coordinates):
         if self.scroll_click_enabled:
             return
@@ -243,6 +243,7 @@ class ShapesFunctionality:
 
         square = Square(self.canvas, x, y, size)
         square.canvas.itemconfig(square.id, fill=self.selected_color)
+
         self.latest_square = square
 
         self.shapes_lst.append(square)
@@ -255,11 +256,12 @@ class ShapesFunctionality:
 
         circle = Circle(self.canvas, x, y, 20)
         circle.canvas.itemconfig(circle.id, fill=self.selected_color)
+
         self.latest_circle = circle
 
         self.shapes_lst.append(circle)
 
-    # Random
+    # Creating Random Shapes
     def random_shapes(self, event):
         if not self.scroll_click_enabled:
             return
@@ -295,6 +297,7 @@ class ShapesFunctionality:
 
         line = Line(self.canvas, start_x, start_y, end_x, end_y)
         line.canvas.itemconfig(line.id, fill=self.selected_color)
+
         self.latest_line = line
 
         self.shapes_lst.append(line)
@@ -309,6 +312,7 @@ class ShapesFunctionality:
 
         square = Square(self.canvas, x, y, size)
         square.canvas.itemconfig(square.id, fill=self.selected_color)
+
         self.latest_square = square
 
         self.shapes_lst.append(square)
@@ -322,12 +326,14 @@ class ShapesFunctionality:
 
         circle = Circle(self.canvas, x, y, 20)
         circle.canvas.itemconfig(circle.id, fill=self.selected_color)
+
         self.latest_circle = circle
 
         self.shapes_lst.append(circle)
 
     # Resize shapes
     def resize_up(self):
+
         shape = self.shape_name.get()
 
         if shape == "Line":
@@ -348,6 +354,7 @@ class ShapesFunctionality:
                                    current_circle_size[2] + 5, current_circle_size[3] + 5)
 
     def resize_down(self):
+
         shape = self.shape_name.get()
 
         if shape == "Line":
